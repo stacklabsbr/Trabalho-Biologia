@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -817,22 +818,27 @@ function Stats() {
               <span className="h-2 w-4 rounded-full" style={{ background: "var(--gradient-cyan)" }} /> nível médio
             </div>
           </div>
-          <div className="mt-8 flex items-end gap-3 sm:gap-5 h-64">
-            {testos.map((d, i) => {
-              const h = visible ? (d.v / max) * 100 : 0;
-              return (
-                <div key={d.age} className="flex-1 flex flex-col items-center gap-2">
-                  <div className="text-[10px] text-muted-foreground">{d.v}</div>
-                  <div className="w-full rounded-t-lg" style={{
-                    height: `${h}%`,
-                    background: "var(--gradient-cyan)",
-                    transition: `height 1.2s cubic-bezier(0.22,1,0.36,1) ${i * 0.08}s`,
-                    boxShadow: "0 0 20px -5px oklch(0.85 0.18 200 / 0.5)",
-                  }} />
-                  <div className="text-xs text-muted-foreground">{d.age} anos</div>
-                </div>
-              );
-            })}
+          <div className="mt-8 h-72 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={testos} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorV" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="oklch(0.85 0.18 200)" stopOpacity={0.6}/>
+                    <stop offset="95%" stopColor="oklch(0.85 0.18 200)" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="oklch(0.3 0.05 240)" />
+                <XAxis dataKey="age" tickFormatter={(v) => `${v} anos`} stroke="oklch(0.55 0.05 230)" fontSize={12} tickLine={false} axisLine={false} />
+                <YAxis stroke="oklch(0.55 0.05 230)" fontSize={12} tickLine={false} axisLine={false} />
+                <Tooltip 
+                  contentStyle={{ backgroundColor: 'oklch(0.2 0.05 240 / 0.9)', borderColor: 'oklch(0.3 0.05 240)', borderRadius: '12px', backdropFilter: 'blur(8px)' }}
+                  itemStyle={{ color: 'oklch(0.85 0.18 200)', fontWeight: 600 }}
+                  formatter={(value: number) => [`${value} ng/dL`, 'Nível médio']}
+                  labelFormatter={(label) => `Idade: ${label} anos`}
+                />
+                <Area type="monotone" dataKey="v" stroke="oklch(0.85 0.18 200)" strokeWidth={3} fillOpacity={1} fill="url(#colorV)" animationDuration={1800} />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
