@@ -94,6 +94,7 @@ const SECTIONS = [
   { id: "puberdade", label: "Puberdade" },
   { id: "curiosidades", label: "Curiosidades" },
   { id: "quiz", label: "Quiz" },
+  { id: "referencias", label: "Referências" },
   { id: "estatisticas", label: "Estatísticas" },
 ];
 
@@ -180,6 +181,10 @@ function Hero() {
         </h1>
         <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-muted-foreground animate-fade-up" style={{ animationDelay: "0.2s" }}>
           Uma jornada visual pela anatomia, fisiologia e funcionamento do sistema responsável pela produção dos gametas masculinos e pela manutenção das características sexuais.
+        </p>
+        <p className="mt-4 max-w-2xl mx-auto text-sm text-muted-foreground animate-fade-up" style={{ animationDelay: "0.25s" }}>
+          Trabalho da professora Cleide de biologia.<br/>
+          Desenvolvido por: Pedro Henrique de Souza, Gabriel Henrique e Saulo Rodrigues.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
           <a href="#anatomia" className="btn-glow inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium text-[color:var(--navy)] hover:scale-105 active:scale-95" style={{ background: "var(--gradient-cyan)" }}>
@@ -721,6 +726,42 @@ function Quiz() {
   );
 }
 
+/* ---------- REFERÊNCIAS ---------- */
+
+function References() {
+  return (
+    <section id="referencias" className="py-24 px-6">
+      <div className="mx-auto max-w-3xl">
+        <SectionHeader eyebrow="Fontes" title="Referências Científicas" subtitle="Bibliografia e fontes utilizadas para a construção deste projeto." />
+        <div className="mt-12 glass rounded-3xl p-8 sm:p-10">
+          <ul className="space-y-4 text-sm sm:text-base text-muted-foreground">
+            <li className="flex gap-3">
+              <span className="text-[color:var(--cyan)]">·</span>
+              <span>Tortora, G. J.; Derrickson, B. <em>Princípios de Anatomia e Fisiologia</em>. 14ª ed.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[color:var(--cyan)]">·</span>
+              <span>Guyton & Hall. <em>Tratado de Fisiologia Médica</em>. 13ª ed.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[color:var(--cyan)]">·</span>
+              <span>Junqueira, L. C.; Carneiro, J. <em>Histologia Básica</em>.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[color:var(--cyan)]">·</span>
+              <span>Organização Mundial da Saúde (OMS) — Saúde reprodutiva.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-[color:var(--cyan)]">·</span>
+              <span>Sociedade Brasileira de Urologia (SBU).</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- ESTATÍSTICAS ---------- */
 
 function Stats() {
@@ -823,7 +864,7 @@ function Counter({ target, active, decimals = 0 }: { target: number; active: boo
 function Footer() {
   return (
     <footer className="px-6 py-16 border-t border-white/5">
-      <div className="mx-auto max-w-7xl grid md:grid-cols-3 gap-10">
+      <div className="mx-auto max-w-7xl grid md:grid-cols-2 gap-10">
         <div>
           <div className="flex items-center gap-2 font-display font-semibold">
             <span className="grid h-8 w-8 place-items-center rounded-lg" style={{ background: "var(--gradient-cyan)" }}>
@@ -832,16 +873,6 @@ function Footer() {
             <span>Sistema Reprodutor Masculino</span>
           </div>
           <p className="mt-4 text-sm text-muted-foreground max-w-xs">Projeto escolar interativo desenvolvido com foco em aprendizado visual e experiência de usuário.</p>
-        </div>
-        <div>
-          <div className="text-xs uppercase tracking-widest text-[color:var(--cyan)]">Referências científicas</div>
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li>· Tortora, G. J.; Derrickson, B. <em>Princípios de Anatomia e Fisiologia</em>. 14ª ed.</li>
-            <li>· Guyton & Hall. <em>Tratado de Fisiologia Médica</em>. 13ª ed.</li>
-            <li>· Junqueira, L. C.; Carneiro, J. <em>Histologia Básica</em>.</li>
-            <li>· Organização Mundial da Saúde (OMS) — Saúde reprodutiva.</li>
-            <li>· Sociedade Brasileira de Urologia (SBU).</li>
-          </ul>
         </div>
         <div>
           <div className="text-xs uppercase tracking-widest text-[color:var(--cyan)]">Navegação</div>
@@ -891,6 +922,7 @@ function Index() {
         <Puberty />
         <Curiosities />
         <Quiz />
+        <References />
         <Stats />
       </main>
       <Footer />
