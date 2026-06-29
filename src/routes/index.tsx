@@ -469,7 +469,7 @@ function Simulator() {
 
   useEffect(() => {
     if (!running || done) return;
-    const t = setTimeout(() => setIdx((i) => i + 1), 2200);
+    const t = setTimeout(() => setIdx((i) => i + 1), 4500);
     return () => clearTimeout(t);
   }, [running, idx, done]);
 
@@ -537,7 +537,7 @@ function Simulator() {
 
           {/* espermatozoide */}
           {running && !done && (
-            <g style={{ transform: `translate(${pos.x}px, ${pos.y}px)`, transition: "transform 1.8s cubic-bezier(0.22,1,0.36,1)" }}>
+            <g style={{ transform: `translate(${pos.x}px, ${pos.y}px)`, transition: "transform 2.8s cubic-bezier(0.22,1,0.36,1)" }}>
               <circle r="14" fill="oklch(0.85 0.18 200 / 0.2)" className="animate-pulse-ring" />
               <ellipse cx="0" cy="0" rx="7" ry="5" fill="oklch(0.95 0.1 200)" />
               <path d="M-6 0 Q-14 -5 -20 2 Q-26 8 -32 0" fill="none" stroke="oklch(0.95 0.1 200)" strokeWidth="1.5" />
